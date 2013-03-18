@@ -89,12 +89,12 @@
 		<dependencies>
 			<!-- myblog MODULES begin -->
 			<dependency>
-				<groupId>com.xp</groupId>
+				<groupId>com.xp.myblog</groupId>
 				<artifactId>myblog-core</artifactId>
 				<version>${myblog.version}</version>
 			</dependency>
 			<dependency>
-				<groupId>com.xp</groupId>
+				<groupId>com.xp.myblog</groupId>
 				<artifactId>myblog-base</artifactId>
 				<version>${myblog.version}</version>
 			</dependency>

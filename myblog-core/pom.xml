@@ -9,9 +9,10 @@
 		<version>1.0</version>
 		<relativePath>../pom.xml</relativePath>
 	</parent>
-	<groupId>com.xp</groupId>
+	<groupId>com.xp.myblog</groupId>
 	<artifactId>myblog-core</artifactId>
 	<version>1.0</version>
+	<packaging>jar</packaging>
 	<name>myblog-core</name>
 	<url>http://maven.apache.org</url>
 	<dependencies>
@@ -34,7 +35,7 @@
 			<optional>true</optional>
 		</dependency>
 		<!-- PERSISTENCE end -->
-		
+
 		<!-- Security begin -->
 		<dependency>
 			<groupId>org.apache.shiro</groupId>
@@ -57,8 +58,8 @@
 			<optional>true</optional>
 		</dependency>
 		<!-- Wed end -->
-		
-		
+
+
 		<!-- UTILS begin -->
 		<dependency>
 			<groupId>com.google.guava</groupId>
@@ -91,9 +92,9 @@
 			<optional>true</optional>
 		</dependency>
 		<dependency>
-		  <groupId>com.fasterxml.jackson.module</groupId>
-		  <artifactId>jackson-module-jaxb-annotations</artifactId>
-		  <optional>true</optional>
+			<groupId>com.fasterxml.jackson.module</groupId>
+			<artifactId>jackson-module-jaxb-annotations</artifactId>
+			<optional>true</optional>
 		</dependency>
 		<dependency>
 			<groupId>net.sf.dozer</groupId>
@@ -131,12 +132,25 @@
 		</dependency>
 		<!-- LOGGING end -->
 
+		<dependency>
+			<groupId>org.eclipse.jetty.aggregate</groupId>
+			<artifactId>jetty-webapp</artifactId>
+			<scope>compile</scope>
+		</dependency>
+
+		<!-- freemarker -->
+		<dependency>
+			<groupId>org.freemarker</groupId>
+			<artifactId>freemarker</artifactId>
+		</dependency>
+		<!-- freemarker end -->
+
 		<!-- TEST begin -->
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 		</dependency>
-	
+
 		<dependency>
 			<groupId>org.mockito</groupId>
 			<artifactId>mockito-core</artifactId>
@@ -186,7 +200,7 @@
 					</execution>
 				</executions>
 			</plugin>
-			
+
 			<!-- enforcer, 规则统一定义在parent -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
