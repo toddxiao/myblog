@@ -5,11 +5,12 @@
   <parent>
     <groupId>com.xp</groupId>
     <artifactId>myblog</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0</version>
+    <relativePath>../pom.xml</relativePath>
   </parent>
   <groupId>com.xp</groupId>
   <artifactId>myblog-web</artifactId>
-  <version>1.0-SNAPSHOT</version>
+  <version>1.0</version>
   <name>myblog-web</name>
   <url>http://maven.apache.org</url>
   <properties>
