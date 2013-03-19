@@ -12,10 +12,8 @@ import com.xp.myblog.core.jetty.JettyFactory;
 public class QuickStartServer {
 
 	public static final int PORT = 8080;
-	public static final String CONTEXT = "/myproject";
+	public static final String CONTEXT = "/myblog";
 	public static final String BASE_URL = "http://localhost:8080/myblog";
-	public static final String[] TLD_JAR_NAMES = new String[] { "sitemesh", "spring-webmvc", "shiro-web",
-			"springside-core" };
 
 	public static void main(String[] args) throws Exception {
 		// 设定Spring的profile
@@ -23,7 +21,6 @@ public class QuickStartServer {
 
 		// 启动Jetty
 		Server server = JettyFactory.createServerInSource(PORT, CONTEXT);
-		JettyFactory.setTldJarNames(server, TLD_JAR_NAMES);
 
 		try {
 			server.start();

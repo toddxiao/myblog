@@ -21,8 +21,14 @@
 	</context:component-scan>
 
 	<!-- 以静态变量保存ApplicationContext -->
-	<bean class="com.xp.myblog.common.context.SpringContextHolder"
+	<bean class="com.xp.myblog.core.context.SpringContextHolder"
 		lazy-init="false" />
+
+	<!-- 初始化系统常量 -->
+	<bean class="com.xp.myblog.core.context.SysPropsFactory"
+		lazy-init="false">
+		<property name="resource" value="classpath:sys.properties" />
+	</bean>
 
 	<!-- Jpa Entity Manager 配置 -->
 	<bean id="entityManagerFactory"
@@ -41,8 +47,7 @@
 	<bean id="hibernateJpaVendorAdapter"
 		class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
 		<property name="databasePlatform">
-			<bean factory-method="getDialect"
-				class="org.springside.modules.persistence.Hibernates">
+			<bean factory-method="getDialect" class="com.xp.myblog.core.persistence.Hibernates">
 				<constructor-arg ref="dataSource" />
 			</bean>
 		</property>
@@ -68,8 +73,7 @@
 
 
 	<context:property-placeholder
-		ignore-unresolvable="true"
-		location="file:${user.home}/.myblog/application.properties" />
+		ignore-unresolvable="true" location="file:${user.home}/myblog/application.properties" />
 
 	<!-- 数据源配置, 使用DBCP数据库连接池 -->
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
@@ -92,5 +96,6 @@
 	<!-- 数据源配置,使用应用服务器的数据库连接池 -->
 	<!--<jee:jndi-lookup id="dataSource" jndi-name="java:comp/env/jdbc/ExampleDB" 
 		/> -->
-
+	<!-- shiro -->
+	<import resource="applicationContext-shiro.xml"/>
 </beans>

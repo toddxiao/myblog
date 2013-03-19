@@ -230,7 +230,16 @@
 			<groupId>com.fasterxml.jackson.datatype</groupId>
 			<artifactId>jackson-datatype-joda</artifactId>
 		</dependency>
-
+		<dependency>
+				<groupId>org.codehaus.jackson</groupId>
+				<artifactId>jackson-core-asl</artifactId>
+				<version>1.9.6</version>
+			</dependency>
+		<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-mapper-asl</artifactId>
+			<version>1.9.6</version>
+		</dependency>
 		<!-- XML begin -->
 		<dependency>
 			<groupId>dom4j</groupId>
@@ -274,6 +283,10 @@
 		<dependency>
 			<groupId>commons-io</groupId>
 			<artifactId>commons-io</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>commons-fileupload</groupId>
+			<artifactId>commons-fileupload</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>commons-codec</groupId>
