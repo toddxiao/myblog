@@ -36,23 +36,27 @@ import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.util.ByteSource;
 import org.springframework.beans.factory.annotation.Autowired;
-import com.mycompany.myproject.entity.User;
-import org.springside.modules.utils.Encodes;
+
+import com.xp.myblog.core.utils.Encodes;
+import com.xp.myblog.model.User;
+import com.xp.myblog.service.UserService;
 
 public class ShiroDbRealm extends AuthorizingRealm {
 
 
+	@Autowired
+	private UserService userService;
 	/**
 	 * 认证回调函数,登录时调用.
 	 */
 	@Override
 	protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authcToken) throws AuthenticationException {
 		UsernamePasswordToken token = (UsernamePasswordToken) authcToken;
-		User user = accountService.findUserByLoginName(token.getUsername());
+		User user = userService.getUserByUserEmail(token.getUsername());
 		if (user != null) {
 			byte[] salt = Encodes.decodeHex(user.getSalt());
-			return new SimpleAuthenticationInfo(new ShiroUser(user.getId(), user.getLoginName(), user.getName()),
-					user.getPassword(), ByteSource.Util.bytes(salt), getName());
+			return new SimpleAuthenticationInfo(new ShiroUser(user.getId(), user.getUserEmail(), user.getUserName()),
+					user.getUserPassword(), ByteSource.Util.bytes(salt), getName());
 		} else {
 			return null;
 		}
@@ -64,9 +68,9 @@ public class ShiroDbRealm extends AuthorizingRealm {
 	@Override
 	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
 		ShiroUser shiroUser = (ShiroUser) principals.getPrimaryPrincipal();
-		User user = accountService.findUserByLoginName(shiroUser.loginName);
+		User user = userService.getUserByUserEmail(shiroUser.email);
 		SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
-		info.addRoles(user.getRoleList());
+		info.addRole(user.getUserRole());
 		return info;
 	}
 
@@ -75,8 +79,8 @@ public class ShiroDbRealm extends AuthorizingRealm {
 	 */
 	@PostConstruct
 	public void initCredentialsMatcher() {
-		HashedCredentialsMatcher matcher = new HashedCredentialsMatcher(AccountService.HASH_ALGORITHM);
-		matcher.setHashIterations(AccountService.HASH_INTERATIONS);
+		HashedCredentialsMatcher matcher = new HashedCredentialsMatcher(UserService.HASH_ALGORITHM);
+		matcher.setHashIterations(UserService.HASH_INTERATIONS);
 
 		setCredentialsMatcher(matcher);
 	}
@@ -87,12 +91,12 @@ public class ShiroDbRealm extends AuthorizingRealm {
 	public static class ShiroUser implements Serializable {
 		private static final long serialVersionUID = -1373760761780840081L;
 		public Long id;
-		public String loginName;
+		public String email;
 		public String name;
 
-		public ShiroUser(Long id, String loginName, String name) {
+		public ShiroUser(Long id, String email, String name) {
 			this.id = id;
-			this.loginName = loginName;
+			this.email = email;
 			this.name = name;
 		}
 
@@ -105,7 +109,7 @@ public class ShiroDbRealm extends AuthorizingRealm {
 		 */
 		@Override
 		public String toString() {
-			return loginName;
+			return email;
 		}
 
 		/**
@@ -113,7 +117,7 @@ public class ShiroDbRealm extends AuthorizingRealm {
 		 */
 		@Override
 		public int hashCode() {
-			return HashCodeBuilder.reflectionHashCode(this, "loginName");
+			return HashCodeBuilder.reflectionHashCode(this, "email");
 		}
 
 		/**
@@ -121,7 +125,7 @@ public class ShiroDbRealm extends AuthorizingRealm {
 		 */
 		@Override
 		public boolean equals(Object obj) {
-			return EqualsBuilder.reflectionEquals(this, obj, "loginName");
+			return EqualsBuilder.reflectionEquals(this, obj, "email");
 		}
 	}
 }
