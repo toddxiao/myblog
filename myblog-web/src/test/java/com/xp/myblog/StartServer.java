@@ -9,7 +9,7 @@ import com.xp.myblog.core.jetty.JettyFactory;
  * 
  * @author calvin
  */
-public class QuickStartServer {
+public class StartServer {
 
 	public static final int PORT = 8080;
 	public static final String CONTEXT = "/myblog";

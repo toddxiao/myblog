@@ -43,6 +43,10 @@
 
 		<!-- AOP -->
 		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-aop</artifactId>
+		</dependency>
+		<dependency>
 			<groupId>org.aspectj</groupId>
 			<artifactId>aspectjrt</artifactId>
 		</dependency>
@@ -231,10 +235,10 @@
 			<artifactId>jackson-datatype-joda</artifactId>
 		</dependency>
 		<dependency>
-				<groupId>org.codehaus.jackson</groupId>
-				<artifactId>jackson-core-asl</artifactId>
-				<version>1.9.6</version>
-			</dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-core-asl</artifactId>
+			<version>1.9.6</version>
+		</dependency>
 		<dependency>
 			<groupId>org.codehaus.jackson</groupId>
 			<artifactId>jackson-mapper-asl</artifactId>
@@ -404,7 +408,8 @@
 				<configuration>
 					<wtpversion>2.0</wtpversion>
 					<additionalProjectnatures>
-						<projectnature>org.springframework.ide.eclipse.core.springnature</projectnature>
+						<projectnature>org.springframework.ide.eclipse.core.springnature
+						</projectnature>
 					</additionalProjectnatures>
 				</configuration>
 			</plugin>
