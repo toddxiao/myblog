@@ -4,24 +4,21 @@
         <meta charset="utf-8" />
         <meta name="robots" content="none" />
         <title>${blogTitle} - ${adminConsoleLabel}</title>
-        <link type="text/css" rel="stylesheet" href="${staticServePath}/css/default-base${miniPostfix}.css?${staticResourceVersion}" />
-        <link type="text/css" rel="stylesheet" href="${staticServePath}/css/default-admin${miniPostfix}.css?${staticResourceVersion}" />
-        <#if "CodeMirror-Markdown" == editorType>
-        <link type="text/css" rel="stylesheet" href="${staticServePath}/js/lib/CodeMirror/codemirror.css?${staticResourceVersion}" />
-        </#if>
-        <link rel="icon" type="image/png" href="${staticServePath}/favicon.png" />
+        <link type="text/css" rel="stylesheet" href="${contextPath}/css/default-base${miniPostfix}.css?${staticResourceVersion}" />
+        <link type="text/css" rel="stylesheet" href="${contextPath}/css/default-admin${miniPostfix}.css?${staticResourceVersion}" />
+        <link rel="icon" type="image/png" href="${contextPath}/favicon.png" />
     </head>
     <body onhashchange="admin.setCurByHash();">
         <div class="tip"><span id="loadMsg">${loadingLabel}</span></div>
         <div class="tip tip-msg"><span id="tipMsg"></span></div>
         <div id="allPanel">
             <div id="top">
-                <a href="http://b3log.org" target="_blank" class="hover">
-                    B3log Solo
+                <a href="#" target="#" class="hover">
+                    I'm thinking...
                 </a>
                
                 <span class="right"> 
-                    <span>${userName}</span><a href="${servePath}" title='${indexLabel}'>${indexLabel}</a><a href='javascript:admin.logout();' title='${logoutLabel}'>${logoutLabel}</a>
+                    <span>${userName}</span><a href="${contextPath}" title='首页'>首页</a><a href='${contextPath}/logout;' title='登出'>登出</a>
                 </span>
                 <div class="clear"></div>
             </div>
@@ -30,30 +27,30 @@
                     <li>
                         <div id="tabs_main">
                             <a href="#main">
-                                <span class="left usersIcon"></span>${adminIndexLabel}
+                                <span class="left usersIcon"></span>后台首页
                             </a>
                         </div>
                     </li>
                     <li>
                         <div onclick="admin.collapseNav(this)">
                             <span class="left postIcon"></span>
-                            ${articleLabel}
+                            	文章
                             <span class="ico-arrow-up"></span>
                         </div>
                         <ul id="tabArticleMgt">
                             <li>
                                 <div id="tabs_article">
-                                    <a href="#article/article" onclick="admin.article.prePost()">${postArticleLabel}</a>
+                                    <a href="#article/article" onclick="admin.article.prePost()">发布文章</a>
                                 </div>
                             </li>
                             <li>
                                 <div id="tabs_article-list">
-                                    <a href="#article/article-list">${articleListLabel}</a>
+                                    <a href="#article/article-list">文章管理</a>
                                 </div>
                             </li>
                             <li>
                                 <div id="tabs_draft-list">
-                                    <a href="#article/draft-list">${draftListLabel}</a>
+                                    <a href="#article/draft-list">草稿夹</a>
                                 </div>
                             </li>
                         </ul>
@@ -61,14 +58,14 @@
                     <li>
                         <div id="tabs_comment-list">
                             <a href="#comment-list">
-                                <span class="left commentIcon"></span>${commentListLabel}
+                                <span class="left commentIcon"></span>评论管理
                             </a>
                         </div>
                     </li>
                     <li>
                         <div id="tabToolsTitle" onclick="admin.collapseNav(this)">
                             <span class="left preferenceIcon"></span>
-                            ${ToolLabel}
+                            	工具
                             <span class="ico-arrow-down"></span>
                         </div>
                         <ul class="none" id="tabTools">
@@ -134,43 +131,43 @@
                     <span style="color: orangered; font-weight: bold;">Solo</span></a>, ver ${version}
             </div>
         </div>
-        <script src="${staticServePath}/js/lib/jquery/jquery.min.js"></script>
-        <script src="${staticServePath}/js/lib/jquery/jquery.bowknot.min.js?${staticResourceVersion}"></script>
+        <script src="${contextPath}/js/lib/jquery/jquery.min.js"></script>
+        <script src="${contextPath}/js/lib/jquery/jquery.bowknot.min.js?${staticResourceVersion}"></script>
         <#if "tinyMCE" == editorType>
         <script src="${servePath}/js/lib/tiny_mce/tiny_mce.js"></script>
         <#elseif "KindEditor" == editorType>
-        <script src="${staticServePath}/js/lib/KindEditor/kindeditor-min.js"></script>
+        <script src="${contextPath}/js/lib/KindEditor/kindeditor-min.js"></script>
         <#else>
-        <script src="${staticServePath}/js/lib/CodeMirror/codemirror.js"></script>
+        <script src="${contextPath}/js/lib/CodeMirror/codemirror.js"></script>
         </#if>
-        <script src="${staticServePath}/js/common${miniPostfix}.js"></script>
+        <script src="${contextPath}/js/common${miniPostfix}.js"></script>
         <#if "" == miniPostfix>
-        <script src="${staticServePath}/js/admin/admin.js"></script>
-        <script src="${staticServePath}/js/admin/editor.js"></script>
+        <script src="${contextPath}/js/admin/admin.js"></script>
+        <script src="${contextPath}/js/admin/editor.js"></script>
         <#if "tinyMCE" == editorType>
-        <script src="${staticServePath}/js/admin/editorTinyMCE.js"></script>
+        <script src="${contextPath}/js/admin/editorTinyMCE.js"></script>
         <#elseif "KindEditor" == editorType>
-        <script src="${staticServePath}/js/admin/editorKindEditor.js"></script>
+        <script src="${contextPath}/js/admin/editorKindEditor.js"></script>
         <#else>
-        <script src="${staticServePath}/js/admin/editorCodeMirror.js"></script>
+        <script src="${contextPath}/js/admin/editorCodeMirror.js"></script>
         </#if>
-        <script src="${staticServePath}/js/admin/tablePaginate.js"></script>
-        <script src="${staticServePath}/js/admin/article.js"></script>
-        <script src="${staticServePath}/js/admin/comment.js"></script>
-        <script src="${staticServePath}/js/admin/articleList.js"></script>
-        <script src="${staticServePath}/js/admin/draftList.js"></script>
-        <script src="${staticServePath}/js/admin/pageList.js"></script>
-        <script src="${staticServePath}/js/admin/others.js"></script>
-        <script src="${staticServePath}/js/admin/linkList.js"></script>
-        <script src="${staticServePath}/js/admin/preference.js"></script>
-        <script src="${staticServePath}/js/admin/pluginList.js"></script>
-        <script src="${staticServePath}/js/admin/userList.js"></script>
-        <script src="${staticServePath}/js/admin/commentList.js"></script>
-        <script src="${staticServePath}/js/admin/plugin.js"></script>
-        <script src="${staticServePath}/js/admin/main.js"></script>
-        <script src="${staticServePath}/js/admin/about.js"></script>
+        <script src="${contextPath}/js/admin/tablePaginate.js"></script>
+        <script src="${contextPath}/js/admin/article.js"></script>
+        <script src="${contextPath}/js/admin/comment.js"></script>
+        <script src="${contextPath}/js/admin/articleList.js"></script>
+        <script src="${contextPath}/js/admin/draftList.js"></script>
+        <script src="${contextPath}/js/admin/pageList.js"></script>
+        <script src="${contextPath}/js/admin/others.js"></script>
+        <script src="${contextPath}/js/admin/linkList.js"></script>
+        <script src="${contextPath}/js/admin/preference.js"></script>
+        <script src="${contextPath}/js/admin/pluginList.js"></script>
+        <script src="${contextPath}/js/admin/userList.js"></script>
+        <script src="${contextPath}/js/admin/commentList.js"></script>
+        <script src="${contextPath}/js/admin/plugin.js"></script>
+        <script src="${contextPath}/js/admin/main.js"></script>
+        <script src="${contextPath}/js/admin/about.js"></script>
         <#else>
-        <script src="${staticServePath}/js/admin/latkeAdmin${miniPostfix}.js?${staticResourceVersion}"></script>
+        <script src="${contextPath}/js/admin/latkeAdmin${miniPostfix}.js?${staticResourceVersion}"></script>
         </#if>
         <#include "admin-label.ftl">
         ${plugins}
